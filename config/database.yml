@@ -23,7 +23,7 @@ development:
   username: root
   password:
   host: localhost
-  database: furima_39573_development
+  database: furima-39573_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -34,7 +34,7 @@ test:
   username: root
   password:
   host: localhost
-  database: furima_39573_test
+  database: furima-39573_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -60,6 +60,6 @@ production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
-  database: furima_39573_production
-  username: furima_39573
-  password: <%= ENV["FURIMA_39573_DATABASE_PASSWORD"] %>
+  database: furima-39573_production
+  username: furima-39573
+  password: <%= ENV["FURIMA-39573_DATABASE_PASSWORD"] %>
