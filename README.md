@@ -34,8 +34,6 @@
 | prefecture_id  | integer    | null: false                    |
 | scheduled_delivery_id | integer | null: false                |
 | price          | integer    | null: false                    |
-| comment        | text       | null: false                    |
-
 
 
 ### Association
@@ -55,7 +53,7 @@
 | addresses  | string     | null: false                    |
 | building_name| string   | null                           |
 | phone_number| string    | null: false                    |
-| user_id    | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 
