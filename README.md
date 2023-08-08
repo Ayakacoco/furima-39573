@@ -16,7 +16,6 @@
 ### Association
 
 - has_many :items
-- has_one :addresses
 - has_many :orders
 
 
@@ -27,7 +26,6 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | user           | references | null: false, foreign_key: true |
-| address        | references | null: false, foreign_key: true |
 | item_name      | string     | null: false                    |
 | product        | text       | null: false                    |
 | category_id    | integer    | null: false                    |
@@ -43,7 +41,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
 - has_one :order
 
 
@@ -53,16 +50,16 @@
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
 | postal_code| string     | null: false                    |
-| Prefecture | integer    | null: false                    |
+| prefecture_id | integer | null: false                    |
 | city       | string     | null: false                    |
 | addresses  | string     | null: false                    |
+| building_name| string   | null                           |
 | phone_number| string    | null: false                    |
 | user_id    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
-- has_many :orders
+- belong_to :order
 
 
 
@@ -72,10 +69,8 @@
 | ---------- | ---------- | ------------------------------ |
 | item       | references | null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
-| address    | references | null: false, foreign_key: true |
-
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
