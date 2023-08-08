@@ -11,36 +11,40 @@
 | last_name          | string | null: false               |
 | first_name_kana    | string | null: false               |
 | last_name_kana     | string | null: false               |
-| birth_date         | integer| null: false               |
+| birth_date         | date   | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :addresses
+- has_one :addresses
+- has_many :orders
+
 
 
 
 ## items テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user        | references | null: false, foreign_key: true |
-| item_name   | string     | null: false                    |
-| product     | text       | null: false                    |
-| category    | integer    | null: false                    |
-| sales_status| integer    | null: false                    |
-| shopping_fee| integer    | null: false                    |
-| prefecture  | integer    | null: false                    |
-| scheduled_delivery | integer | null: false                |
-| price       | integer    | null: false                    |
-| content     | text       | null: false                    |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| user           | references | null: false, foreign_key: true |
+| address        | references | null: false, foreign_key: true |
+| item_name      | string     | null: false                    |
+| product        | text       | null: false                    |
+| category_id    | integer    | null: false                    |
+| sales_status_id| integer    | null: false                    |
+| shopping_fee_id| integer    | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| scheduled_delivery_id | integer | null: false                |
+| price          | integer    | null: false                    |
+| comment        | text       | null: false                    |
 
 
 
 ### Association
 
 - belongs_to :user
-- has_many :orders
+- has_one :address
+- has_one :order
 
 
 
@@ -48,17 +52,17 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| postal_code| integer    | null: false                    |
+| postal_code| string     | null: false                    |
 | Prefecture | integer    | null: false                    |
-| city       | integer    | null: false                    |
-| addresses  | integer    | null: false                    |
-| phone_number| integer   | null: false                    |
-| user       | references | null: false, foreign_key: true |
+| city       | string     | null: false                    |
+| addresses  | string     | null: false                    |
+| phone_number| string    | null: false                    |
+| user_id    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :order
+- belongs_to :item
+- has_many :orders
 
 
 
@@ -66,10 +70,12 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| items      | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
+| address    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :address
