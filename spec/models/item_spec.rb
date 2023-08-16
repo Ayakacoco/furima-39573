@@ -27,28 +27,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = ''
+      it 'category_idが2以上でなければ登録できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
-      it 'sales_status_idが空では登録できない' do
-        @item.sales_status_id = ''
+      it 'sales_status_idが2以上でなければ登録できない' do
+        @item.sales_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Sales status can't be blank"
       end
-      it 'shopping_fee_idが空では登録できない' do
-        @item.shopping_fee_id = ''
+      it 'shopping_fee_idが2以上でなければ登録できない' do
+        @item.shopping_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Shopping fee can't be blank"
       end
-      it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = ''
+      it 'prefecture_idが2以上でなければ登録できない' do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
-      it 'scheduled_delivery_idが空では登録できない' do
-        @item.scheduled_delivery_id = ''
+      it 'scheduled_delivery_idが2以上でなければ登録できない' do
+        @item.scheduled_delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Scheduled delivery can't be blank"
       end

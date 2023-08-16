@@ -6,11 +6,11 @@ priceInput.addEventListener("input", () => {
   const price = parseFloat(priceInput.value);
 
   if (!isNaN(price)) {
-    const tax = price * 0.1; // 販売手数料（10%）
+    const tax = Math.floor(price * 0.1); // 販売手数料（10%）を切り捨てて計算
     const profit = price - tax; // 販売利益
 
-    taxOutput.textContent = `${tax.toFixed(0)} `; // 販売手数料を表示（小数点以下表示しない）
-    profitOutput.textContent = `${profit.toFixed(0)} `; // 販売利益を表示（小数点以下表示しない）
+    taxOutput.textContent = `${tax} `; // 販売手数料を表示
+    profitOutput.textContent = `${profit} `; // 販売利益を表示
   } else {
     taxOutput.textContent = "0 ";
     profitOutput.textContent = "0 ";
