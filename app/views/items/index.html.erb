@@ -128,10 +128,10 @@
     </div>
     <ul class='item-lists'>
       <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to "#" do %>
-          <div class='item-img-content'>
-            <%= image_tag item.image.variant(resize: '250x250'), class: 'item-image' if item.image.attached? %>
+          <li class='list'>
+            <%= link_to "#" do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image.variant(resize: '250x250'), class: 'item-image'  %>
 
             <%# 商品が売れていればsold outを表示しましょう %>
           <%# if item.sold_out? %>
@@ -141,7 +141,7 @@
           <% end %>
             <%# //商品が売れていればsold outを表示しましょう %>
 
-          </div>
+            </div>
             <div class='item-info'>
               <h3 class='item-name'>
                 <%= item.item_name %>
@@ -154,11 +154,12 @@
                 </div>
               </div>
             </div>
-          <% end %>
-        </li>
+            <% end %>
+          </li>
+        <% end %>
 
-        <li class='list'>
-          <% if @items.empty? %>
+        <% if @items.empty? %>
+          <li class='list'>
             <%= link_to '#' do %>
               <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
               <div class='item-info'>
@@ -174,9 +175,9 @@
                 </div>
               </div>
             <% end %>
-          <% end %>
-        </li>
-      <% end %>
+          </li>
+        <% end %>
+ 
     </ul>
   </div>
   <%# /商品一覧 %>
@@ -186,3 +187,4 @@
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
+
