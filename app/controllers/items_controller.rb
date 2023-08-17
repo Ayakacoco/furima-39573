@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  #before_action :set_item, only: [:edit, :show]
+  before_action :set_item, only: [:edit, :show, :update]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :contributor_confirmation, only: [:edit]
   #before_action :move_to_index, except: [:index]
 
   def index
@@ -24,8 +25,16 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def update
+    @item.update(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def show
-    @item = Item.find(params[:id])
   end
 
   private
@@ -34,9 +43,13 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:product, :image, :item_name, :category_id, :sales_status_id, :shopping_fee_id, :prefecture_id, :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 
-  #def set_tweet
-    #@item = Item.find(params[:id])
-  #end
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def contributor_confirmation
+    redirect_to root_path unless current_user == @item.user
+  end
 
   #def move_to_index
     #unless user_signed_in?
