@@ -7,10 +7,6 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :birth_date, presence: true
 
-  with_options presence: true, format: { with:  /\A\S+@\S+\.\S+\z/, message: 'can not be blank' } do
-    validates :email
-  end
-
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' } do
     validates :first_name
     validates :last_name

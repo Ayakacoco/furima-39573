@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
+  before_action :move_to_index, only: [:index]
+
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -35,5 +37,9 @@ class OrdersController < ApplicationController
       card: order_params[:token],     # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
       )
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user == @item.user && @item.order.present?
   end
 end
