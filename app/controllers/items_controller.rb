@@ -2,15 +2,16 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :contributor_confirmation, only: [:edit, :destroy]
-  #before_action :move_to_index, except: [:index]
+  before_action :move_to_index, only: [:edit]
+
 
   def index
-    #@items = Item.all
     @items = Item.order("created_at DESC")
   end
 
   def new
     @item = Item.new
+    @orders = Order.includes(:user).where(item: @item)
   end
 
   def create
@@ -56,10 +57,7 @@ class ItemsController < ApplicationController
     redirect_to root_path unless current_user == @item.user
   end
 
-  #def move_to_index
-    #unless user_signed_in?
-      #redirect_to action: :new
-    #end
-  #end
-
+  def move_to_index
+    redirect_to root_path if current_user == @item.user && @item.order.present?
+  end
 end
