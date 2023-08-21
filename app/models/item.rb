@@ -27,6 +27,6 @@ class Item < ApplicationRecord
     less_than_or_equal_to: 9_999_999
   }
 
-  validates :category_id, :prefecture_id, :sales_status_id, :scheduled_delivery_id, :shopping_fee_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :category_id, :prefecture_id, :sales_status_id, :scheduled_delivery_id, :shopping_fee_id, numericality: { other_than: 1 , message: "は---以外で入力してください"} 
 
 end
